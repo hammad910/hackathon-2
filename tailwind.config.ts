@@ -12,7 +12,13 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        sans: ['Poppins'],
+        clash: ['Clash Display', 'sans-serif'],
+      },
+      plugins: [
+        require('@tailwindcss/typography'),
+      ],
     },
   },
-  plugins: [],
 } satisfies Config;
