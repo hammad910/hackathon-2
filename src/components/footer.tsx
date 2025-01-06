@@ -76,18 +76,5 @@ const Footer = () => {
     );
 };
 
-type FooterIconProps = {
-    href: string,
-    icon: React.ReactNode
-}
-
-const FooterIcon: React.FC<FooterIconProps> = ({ href, icon }) => (
-    <Link
-        href={href}
-        className="w-8 h-8 flex items-center justify-center bg-[#43395B] rounded-full hover:bg-purple-500"
-    >
-        {icon}
-    </Link>
-);
 
 export default Footer;

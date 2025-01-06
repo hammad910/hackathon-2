@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 import { FaTruck } from "react-icons/fa";
 import { CiCircleCheck, CiCreditCard1 } from "react-icons/ci";
