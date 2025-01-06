@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
 import { FaRegUserCircle } from "react-icons/fa";
-import { RxHamburgerMenu, RxCross2  } from "react-icons/rx";
+import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import Link from "next/link";
 
 const Header = () => {
@@ -39,7 +39,7 @@ const Header = () => {
           </button>
           <button
             onClick={toggleSidebar}
-            className="text-gray-600 hover:text-gray-900"
+            className="flex md:hidden text-gray-600 hover:text-gray-900"
           >
             <RxHamburgerMenu size={20} />
           </button>
@@ -73,15 +73,14 @@ const Header = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 w-64 h-full bg-white shadow-lg transform ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 z-50`}
+        className={`fixed top-0 left-0 w-64 h-full bg-white shadow-lg transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          } transition-transform duration-300 z-50`}
       >
         <button
           onClick={toggleSidebar}
           className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
         >
-          <RxCross2 size={30}/>
+          <RxCross2 size={30} />
         </button>
         <div className="flex flex-col space-y-4 p-6 mt-12 sm:mt-0">
           <Link href="#" className="text-gray-600 hover:text-gray-900">
