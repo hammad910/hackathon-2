@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <Hero />
       <Features />
-      <Products />
+      <Products button="View Collection"/>
       <About />
       <SecondFooter />
     </>

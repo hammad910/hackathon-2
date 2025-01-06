@@ -1,8 +1,9 @@
+import Image from "next/image";
 import React from "react";
 
 const About: React.FC = () => {
     return (
-        <section className="w-[80%] mx-auto gap-8 flex flex-col md:flex-row items-stretch bg-gray-100 h-80">
+        <section className="w-[90%] mx-auto gap-8 flex flex-col md:flex-row items-stretch bg-gray-100 h-80 mt-10 sm:mt-20">
             {/* Left Column: Purple Background */}
             <div className="md:w-1/2 bg-[#2A254B] text-white flex flex-col justify-center p-8">
                 <h2 className="text-[26px] font-normal mb-4">It started with a small idea</h2>
@@ -16,7 +17,9 @@ const About: React.FC = () => {
 
             {/* Right Column: Image */}
             <div className="md:w-1/2 relative">
-                <img
+                <Image
+                    width={300}
+                    height={300}
                     src="/images/about.jpeg"
                     alt="Modern interior design"
                     className="object-cover w-full h-full"

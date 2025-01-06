@@ -3,7 +3,7 @@ import ProductCard from './productCard';
 const products = [
     {
         image: '/images/products/product1.jpeg',
-        title: 'The Dandy Chair',
+        title: 'Dandy Chair',
         price: '£250',
     },
     {
@@ -18,16 +18,20 @@ const products = [
     },
     {
         image: '/images/products/product4.jpeg',
-        title: 'The Lucy Lamp',
+        title: 'The Lucy',
         price: '£399',
     },
 ];
 
-const Product = () => {
+interface button {
+    button: string;
+}
+
+const Product: React.FC<button> = ({ button }) => {
     return (
-        <div className="min-h-screen mt-20">
+        <div className="min-h-screen">
             <div className="w-[90%] mx-auto">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-8">
                     {products.map((product) => (
                         <ProductCard
                             key={product.title}
@@ -39,9 +43,11 @@ const Product = () => {
                 </div>
                 {/* Button Container */}
                 <div className="flex justify-center mt-6">
-                    <button className="px-6 py-3 bg-[#F9F9F9] text-[#2A254B] font-[16px] rounded-md">
-                        View collection
-                    </button>
+                    {button && (
+                        <button className="px-6 py-3 w-full sm:w-40 bg-[#F9F9F9] text-[#2A254B] font-[16px] rounded-md mt-2">
+                            {button}
+                        </button>
+                    )}
                 </div>
             </div>
         </div>

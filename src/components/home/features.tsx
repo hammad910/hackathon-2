@@ -35,9 +35,9 @@ const features: Feature[] = [
 
 const BrandDifference: React.FC = () => {
     return (
-        <div className="bg-white mt-20">
+        <div className="bg-white my-10 sm:my-20">
             <div className="w-[90%] mx-auto">
-                <h2 className="text-center text-[24px] font-normal text-[#2A254B] mb-12">
+                <h2 className="sm:text-center text-[20px] sm:text-[24px] font-normal text-[#2A254B] mb-6 sm:mb-12">
                     What makes our brand different
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -46,7 +46,7 @@ const BrandDifference: React.FC = () => {
                             key={index}
                             className="bg-gray-100 p-[30px]"
                         >
-                            <div className="text-5xl mb-4">{feature.icon}</div>
+                            <div className="text-4xl mb-4">{feature.icon}</div>
                             <h3 className="text-[18px] font-normal text-[#2A254B] mb-2">
                                 {feature.title}
                             </h3>
