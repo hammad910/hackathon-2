@@ -1,6 +1,5 @@
 import Hero from '@/components/product/hero'
 import RelatedProduct from '@/components/product/realedProduct'
-import { sanityDataFetch } from '@/sanity/lib/fetchData';
 import { getProductBySlug } from '@/sanity/lib/queries';
 import React from 'react'
 

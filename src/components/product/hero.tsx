@@ -1,5 +1,3 @@
-import { sanityDataFetch } from '@/sanity/lib/fetchData'
-import { allProducts } from '@/sanity/lib/queries'
 import Image from 'next/image'
 import React from 'react'
 
