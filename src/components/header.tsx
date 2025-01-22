@@ -53,7 +53,7 @@ const Header: React.FC = () => {
         {/* Right Icons */}
         <div className="flex-1 flex gap-2 justify-end">
           <Link href="/shopping">
-            <button className="hidden md:flex text-gray-600 hover:text-gray-900">
+            <button className="text-gray-600 hover:text-gray-900">
               <IoCartOutline size={25} />
             </button>
           </Link>

@@ -15,6 +15,7 @@ export const allProducts = defineQuery(`
         price,
         slug,
         description,
+        quantity,
         "imageUrl": image.asset->url,
     }
 `)
@@ -26,6 +27,7 @@ export const fourProducts = defineQuery(`
         price,
         slug,
         description,
+        quantity,
         "imageUrl": image.asset->url,
     }
 `)
@@ -38,6 +40,7 @@ export const getProductBySlug = async (slug: string) => {
         imageUrl,
         price,
         description,
+        slug,
         "imageUrl": image.asset->url,
         dimensions {
           height,

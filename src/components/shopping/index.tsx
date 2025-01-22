@@ -1,7 +1,12 @@
+'use client'
+
 import Image from 'next/image';
 import React from 'react';
 
 const ShoppingCart: React.FC = () => {
+  const cartProducts = JSON.parse(localStorage.getItem("cart"));
+  console.log('cart products', cartProducts);
+
   return (
     <div className="min-h-screen bg-[#F9F9F9] py-10 px-4">
       <div className="w-full sm:w-[90%] mx-auto sm:p-6">
@@ -15,61 +20,37 @@ const ShoppingCart: React.FC = () => {
         </div>
 
         {/* Products */}
-        <div className="space-y-6">
-          {/* Product 1 */}
-          <div className="grid grid-cols-4 gap-16 items-center">
-            <div className="flex col-span-2">
-              <Image
-                width={100}
-                height={134}
-                src="/images/shopping-img-1.jpeg"
-                alt="Graystone vase"
-                className="w-[109px] h-[134px] object-cover mr-4"
-              />
-              <div>
-                <h2 className="font-normal text-[16px] sm:text-[20px] text-[#2A254B]">Graystone vase</h2>
-                <p className="text-[#2A254B] sm:w-[230px] w-[170px] text-[14px]">A timeless ceramic vase with a soft color grey design</p>
-                <p className="font-normal text-[18px] text-[#2A254B] mt-1">£85</p>
+        {cartProducts.length > 0 && (
+          <div className="space-y-6">
+            {/* Product 1 */}
+            {cartProducts.map((pro) => (
+              <div key={pro.name} className="grid grid-cols-4 gap-16 items-center">
+                <div className="flex col-span-2">
+                  <Image
+                    width={100}
+                    height={134}
+                    src={pro.imageUrl}
+                    alt="Graystone vase"
+                    className="w-[109px] h-[134px] object-cover mr-4"
+                  />
+                  <div>
+                    <h2 className="font-normal text-[16px] sm:text-[20px] text-[#2A254B]">{pro.name}</h2>
+                    <p className="text-[#2A254B] sm:w-[230px] w-[170px] text-[14px]">{pro.description}</p>
+                  </div>
+                </div>
+                <div className="text-center">
+                  <input
+                    type="number"
+                    min="1"
+                    defaultValue={pro.quantity || 1}
+                    className="w-16 text-center bg-transparent sm:mt-0 mt-[78px]"
+                  />
+                </div>
+                <div className="hidden sm:flex justify-end text-right text-[#2A254B] text-[18px] font-normal">{pro.price}</div>
               </div>
-            </div>
-            <div className="text-center">
-              <input
-                type="number"
-                min="1"
-                defaultValue="1"
-                className="w-16 text-center bg-transparent sm:mt-0 mt-[78px]"
-              />
-            </div>
-            <div className="hidden sm:flex text-right text-[#2A254B] text-[18px] font-normal">£85</div>
+            ))}
           </div>
-
-          {/* Product 2 */}
-          <div className="grid grid-cols-4 gap-16 items-center">
-            <div className="flex col-span-2">
-              <Image
-                width={100}
-                height={134}
-                src="/images/shopping-img-2.jpeg"
-                alt="Basic white vase"
-                className="w-[109px] h-[134px] object-cover mr-4"
-              />
-              <div>
-                <h2 className="font-normal text-[20px] text-[#2A254B]">Basic white vase</h2>
-                <p className="text-[#2A254B] sm:w-[230px] w-[170px] text-[14px]">Beautiful and simple, this is one for the classics</p>
-                <p className="font-normal text-[18px] text-[#2A254B] mt-1">£125</p>
-              </div>
-            </div>
-            <div className="text-center">
-              <input
-                type="number"
-                min="1"
-                defaultValue="1"
-                className="w-16 rounded-md text-center bg-transparent sm:mt-0 mt-[86px]"
-              />
-            </div>
-            <div className="hidden sm:flex text-right text-[#2A254B] text-[18px] font-normal">£125</div>
-          </div>
-        </div>
+        )}
 
         {/* Summary */}
         <div className="mt-6 border-t pt-4">
