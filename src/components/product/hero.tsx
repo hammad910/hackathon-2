@@ -1,33 +1,37 @@
+import { sanityDataFetch } from '@/sanity/lib/fetchData'
+import { allProducts } from '@/sanity/lib/queries'
 import Image from 'next/image'
 import React from 'react'
 
-const hero = () => {
+const hero = async ({ product }) => {
+    console.log('slug', product);
+    
     return (
         <div className='flex flex-col sm:flex-row bg-[#F9F9F9]'>
             <div>
-                <Image src={'/images/product-img.jpeg'} alt={'service image'} width={500} height={200} className='w-[600px] h-[400px] sm:h-[600px] object-cover' />
+                <Image src={product.imageUrl} alt={'service image'} width={500} height={200} className='w-[600px] h-[400px] sm:h-[600px] object-cover' />
             </div>
             <div className="relative z-10 flex justify-center items-center h-full px-10 p-6">
                 {/* Card */}
                 <div className="sm:p-8 max-w-[28rem] sm:max-w-lg">
                     {/* Title */}
                     <h1 className="text-[36px] md:text-3xl font-normal text-[#2A254B]">
-                        The Dandy Chair
+                        {product.name}
                     </h1>
                     {/* Price */}
-                    <p className="text-[24px] font-normal text-[#12131A] mt-2">£250</p>
+                    <p className="text-[24px] font-normal text-[#12131A] mt-2">Rs.{product.price}</p>
 
                     {/* Description */}
                     <div className="mt-6">
                         <h2 className="text-[16px] font-normal text-[#2A254B]">Description</h2>
                         <p className="text-[#505977] text-[16px] font-normal mt-2">
-                            A timeless design, with premium materials features as one of our most popular and iconic pieces. The dandy chair is perfect for any stylish living space with beech legs and lambskin leather upholstery.
+                            {product.description}
                         </p>
-                        <ul className="list-disc list-inside mt-4 text-[#505977] text-[16px] font-normal">
+                        {/* <ul className="list-disc list-inside mt-4 text-[#505977] text-[16px] font-normal">
                             <li>Premium material</li>
                             <li>Handmade upholstery</li>
                             <li>Quality timeless classic</li>
-                        </ul>
+                        </ul> */}
                     </div>
 
                     {/* Dimensions */}
@@ -36,15 +40,15 @@ const hero = () => {
                         <div className="grid grid-cols-3 gap-4 mt-2 text-gray-600">
                             <div>
                                 <p className="font-normal text-[16px]">Height</p>
-                                <p>110cm</p>
+                                <p>{product.dimensions.height}</p>
                             </div>
                             <div>
                                 <p className="font-normal text-[16px]">Width</p>
-                                <p>75cm</p>
+                                <p>{product.dimensions.width}</p>
                             </div>
                             <div>
                                 <p className="font-normal text-[16px]">Depth</p>
-                                <p>50cm</p>
+                                <p>{product.dimensions.depth}</p>
                             </div>
                         </div>
                     </div>

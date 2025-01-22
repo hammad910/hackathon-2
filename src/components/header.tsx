@@ -1,12 +1,33 @@
-'use client'
-import React, { useState } from "react";
+'use client';
+import React, { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
 import { FaRegUserCircle } from "react-icons/fa";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import Link from "next/link";
+import { sanityDataFetch } from "@/sanity/lib/fetchData";
+import { Categories } from "@/sanity/lib/queries";
 
-const Header = () => {
+// Define the type for categories
+type Category = {
+  name: string;
+};
+
+const Header: React.FC = () => {
+  const [categories, setCategories] = useState<Category[]>([]); // Specify the type for categories
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const data: Category[] = await sanityDataFetch({ query: Categories });
+        setCategories(data);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+    fetchCategories();
+  }, []);
+
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -25,17 +46,19 @@ const Header = () => {
         </div>
 
         {/* Logo */}
-        <div className="flex-1 text-center">
+        <Link href="/" className="flex-1 text-center">
           <h1 className="text-xl font-semibold">Avion</h1>
-        </div>
+        </Link>
 
-        {/* Right Icon */}
+        {/* Right Icons */}
         <div className="flex-1 flex gap-2 justify-end">
+          <Link href="/shopping">
+            <button className="hidden md:flex text-gray-600 hover:text-gray-900">
+              <IoCartOutline size={25} />
+            </button>
+          </Link>
           <button className="hidden md:flex text-gray-600 hover:text-gray-900">
-            <IoCartOutline size={25} />
-          </button>
-          <button className="hidden md:flex text-gray-600 hover:text-gray-900">
-            <FaRegUserCircle size={20} />
+            <FaRegUserCircle size={22} />
           </button>
           <button
             onClick={toggleSidebar}
@@ -48,27 +71,15 @@ const Header = () => {
 
       {/* Bottom Menu Section */}
       <nav className="hidden sm:flex justify-center space-x-6 py-6 bg-[#F9F9F9]">
-        <Link href="#" className="text-gray-600 hover:text-gray-900">
-          Plant pots
-        </Link>
-        <Link href="#" className="text-gray-600 hover:text-gray-900">
-          Ceramics
-        </Link>
-        <Link href="#" className="text-gray-600 hover:text-gray-900">
-          Tables
-        </Link>
-        <Link href="#" className="text-gray-600 hover:text-gray-900">
-          Chairs
-        </Link>
-        <Link href="#" className="text-gray-600 hover:text-gray-900">
-          Crockery
-        </Link>
-        <Link href="#" className="text-gray-600 hover:text-gray-900">
-          Tableware
-        </Link>
-        <Link href="#" className="text-gray-600 hover:text-gray-900">
-          Cutlery
-        </Link>
+        {categories.map((cat) => (
+          <Link
+            href="#"
+            key={cat.name}
+            className="text-gray-600 hover:text-gray-900"
+          >
+            {cat.name}
+          </Link>
+        ))}
       </nav>
 
       {/* Sidebar */}
@@ -83,27 +94,15 @@ const Header = () => {
           <RxCross2 size={30} />
         </button>
         <div className="flex flex-col space-y-4 p-6 mt-12 sm:mt-0">
-          <Link href="#" className="text-gray-600 hover:text-gray-900">
-            Plant pots
-          </Link>
-          <Link href="#" className="text-gray-600 hover:text-gray-900">
-            Ceramics
-          </Link>
-          <Link href="#" className="text-gray-600 hover:text-gray-900">
-            Tables
-          </Link>
-          <Link href="#" className="text-gray-600 hover:text-gray-900">
-            Chairs
-          </Link>
-          <Link href="#" className="text-gray-600 hover:text-gray-900">
-            Crockery
-          </Link>
-          <Link href="#" className="text-gray-600 hover:text-gray-900">
-            Tableware
-          </Link>
-          <Link href="#" className="text-gray-600 hover:text-gray-900">
-            Cutlery
-          </Link>
+          {categories.map((cat) => (
+            <Link
+              href="#"
+              key={cat.name}
+              className="text-gray-600 hover:text-gray-900"
+            >
+              {cat.name}
+            </Link>
+          ))}
         </div>
       </div>
 

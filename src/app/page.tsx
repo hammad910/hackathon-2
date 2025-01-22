@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <Hero />
       <Features />
-      <Products button="View Collection"/>
+      <Products limit={4} button="View Collection"/>
       <About />
       <SecondFooter />
     </>

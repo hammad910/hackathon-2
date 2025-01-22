@@ -1,42 +1,37 @@
+import Link from 'next/link';
 import ProductCard from './productCard';
-
-const products = [
-    {
-        image: '/images/products/product1.jpeg',
-        title: 'Dandy Chair',
-        price: '£250',
-    },
-    {
-        image: '/images/products/product2.jpeg',
-        title: 'Rustic Vase Set',
-        price: '£155',
-    },
-    {
-        image: '/images/products/product3.jpeg',
-        title: 'The Silky Vase',
-        price: '£125',
-    },
-    {
-        image: '/images/products/product4.jpeg',
-        title: 'The Lucy',
-        price: '£399',
-    },
-];
+import { sanityDataFetch } from '@/sanity/lib/fetchData';
+import { allProducts } from '@/sanity/lib/queries';
 
 interface button {
     button: string;
+    limit: number;
 }
 
-const Product: React.FC<button> = ({ button }) => {
+type products = {
+    _id: string,
+    name: string,
+    imageUrl: string,
+    price: string,
+    slug: string
+    current: string;
+
+}
+
+const Product: React.FC<button> = async ({ button, limit }) => {
+    const products = await sanityDataFetch({ query: allProducts })
+    const limitedProducts = limit ? products.slice(0, limit) : products;
+    console.log('products', products);
     return (
         <div className="min-h-screen">
             <div className="w-[90%] mx-auto">
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-8">
-                    {products.map((product) => (
+                    {limitedProducts.map((product: products) => (
                         <ProductCard
-                            key={product.title}
-                            image={product.image}
-                            title={product.title}
+                            key={product.name}
+                            slug={product.slug}
+                            image={product.imageUrl}
+                            title={product.name}
                             price={product.price}
                         />
                     ))}
@@ -44,9 +39,11 @@ const Product: React.FC<button> = ({ button }) => {
                 {/* Button Container */}
                 <div className="flex justify-center mt-6">
                     {button && (
-                        <button className="px-6 py-3 w-full sm:w-40 bg-[#F9F9F9] text-[#2A254B] font-[16px] rounded-md mt-2">
-                            {button}
-                        </button>
+                        <Link href={'/product-listing'}>
+                            <button className="px-6 py-3 w-full sm:w-40 bg-[#F9F9F9] text-[#2A254B] font-[16px] rounded-md mt-2">
+                                {button}
+                            </button>
+                        </Link>
                     )}
                 </div>
             </div>

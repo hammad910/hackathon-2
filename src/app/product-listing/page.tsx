@@ -9,8 +9,6 @@ const page = () => {
     <ProductListing/>
     <Filter/>
     <Product button=''/>
-    <Product button=''/>
-    <Product button='View Collection'/>
     </>
   )
 }
