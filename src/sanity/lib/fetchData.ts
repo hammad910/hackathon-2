@@ -7,6 +7,11 @@ const client = createClient({
     apiVersion: '2024-01-04'
 })
 
-export async function sanityDataFetch({ query, params = {} }: { query: string, params?: Record<string, any> }) {
-    return await client.fetch(query, params);
-}
+interface Params {
+    [key: string]: string | number | boolean | undefined;
+  }
+  
+  export async function sanityDataFetch({ query, params = {} }: { query: string, params?: Params }) {
+      return await client.fetch(query, params);
+  }
+  
