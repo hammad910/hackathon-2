@@ -8,7 +8,7 @@ const page = () => {
     <>
     <ProductListing/>
     <Filter/>
-    <Product button=''/>
+    <Product button='' limit={24}/>
     </>
   )
 }
