@@ -9,9 +9,8 @@ const client = createClient({
 
 interface Params {
     [key: string]: string | number | boolean | undefined;
-  }
-  
-  export async function sanityDataFetch({ query, params = {} }: { query: string, params?: Params }) {
-      return await client.fetch(query, params);
-  }
-  
+}
+
+export async function sanityDataFetch({ query, params = {} }: { query: string, params?: Params }) {
+    return await client.fetch(query, params);
+}
