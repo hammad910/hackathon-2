@@ -1,3 +1,5 @@
+'use client'
+
 import ShoppingCart from '@/components/shopping'
 import React from 'react'
 
