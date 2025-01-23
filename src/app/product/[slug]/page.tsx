@@ -10,7 +10,7 @@ type PageProps = {
 const page = async ({ params }: PageProps) => {
   console.log('slug', params.slug);
 
-  const { slug } = params;
+  const { slug } = await params;
   const product = await getProductBySlug(slug);
   return (
     <>
