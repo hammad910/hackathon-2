@@ -3,11 +3,7 @@ import RelatedProduct from '@/components/product/realedProduct'
 import { getProductBySlug } from '@/sanity/lib/queries';
 import React from 'react'
 
-type PageProps = {
-  params: { slug: string };
-};
-
-const page = async ({ params }: PageProps) => {
+const page = async ({ params }: any) => {
   console.log('slug', params.slug);
 
   const { slug } = await params;
