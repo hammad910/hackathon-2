@@ -3,9 +3,15 @@ import RelatedProduct from '@/components/product/realedProduct';
 import { getProductBySlug } from '@/sanity/lib/queries';
 import React from 'react';
 
-// Use the appropriate PageProps structure
-const page = async ({ params }: { params: { slug: string } }) => {
+// Adjusting the types to correctly match Next.js expectations
+interface PageProps {
+  params: { slug: string };
+}
+
+const Page: React.FC<PageProps> = async ({ params }) => {
   const { slug } = params;
+  console.log(params);
+  
   const product = await getProductBySlug(slug);
 
   return (
@@ -16,4 +22,4 @@ const page = async ({ params }: { params: { slug: string } }) => {
   );
 };
 
-export default page;
+export default Page;
