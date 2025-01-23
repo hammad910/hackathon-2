@@ -3,8 +3,23 @@
 import Image from 'next/image';
 import React from 'react';
 
+type CartItem = {
+  _id: string,
+  name: string,
+  imageUrl: string,
+  price: string,
+  quantity: string;
+  description: string,
+  dimensions: {
+    height: string;
+    width: string;
+    depth: string;
+  };
+  slug: { current: string };
+}
+
 const ShoppingCart: React.FC = () => {
-  const cartProducts = JSON.parse(localStorage.getItem("cart"));
+  const cartProducts = JSON.parse(localStorage.getItem("cart") || "[]");
   console.log('cart products', cartProducts);
 
   return (
@@ -23,7 +38,7 @@ const ShoppingCart: React.FC = () => {
         {cartProducts.length > 0 && (
           <div className="space-y-6">
             {/* Product 1 */}
-            {cartProducts.map((pro) => (
+            {cartProducts.map((pro: CartItem) => (
               <div key={pro.name} className="grid grid-cols-4 gap-16 items-center">
                 <div className="flex col-span-2">
                   <Image

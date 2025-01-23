@@ -3,9 +3,37 @@
 import Image from "next/image";
 import React from "react";
 
-const Hero = ({ product }) => {
+type products = {
+    _id: string,
+    name: string,
+    imageUrl: string,
+    price: string,
+    description: string,
+    dimensions: {
+        height: string;
+        width: string;
+        depth: string;
+    };
+    slug: { current: string };
+}
+type CartItem = {
+    _id: string,
+    name: string,
+    imageUrl: string,
+    price: string,
+    quantity: string;
+    description: string,
+    dimensions: {
+        height: string;
+        width: string;
+        depth: string;
+    };
+    slug: { current: string };
+}
+
+const Hero = ({ product } : { product: products }) => {
     const addToCart = () => {
-        const existingCart = JSON.parse(localStorage.getItem("cart") || "[]");
+        const existingCart: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
 
         const productExists = existingCart.find(item => item._id === product._id);
 
@@ -23,7 +51,7 @@ const Hero = ({ product }) => {
     };
 
     return (
-        <div className="flex flex-col sm:flex-row bg-[#F9F9F9]">
+        <div className="flex flex-col sm:flex-row bg-[#d1bbbb]">
             <div>
                 <Image
                     src={product.imageUrl}

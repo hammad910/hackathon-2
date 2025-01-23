@@ -13,9 +13,7 @@ type products = {
     name: string,
     imageUrl: string,
     price: string,
-    slug: string
-    current: string;
-
+    slug: { current: string };
 }
 
 const Product: React.FC<button> = async ({ button, limit }) => {

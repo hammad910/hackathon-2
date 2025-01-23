@@ -6,11 +6,12 @@ interface ProductCardProps {
     image: string;
     title: string;
     price: string;
-    slug: string;
-    current: string;
+    slug: { current: string };
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ image, title, price, slug }) => {
+    console.log('slug', slug);
+    
     return (
         <Link href={`/product/${slug.current}`} className="flex flex-col items-center">
             <div className="w-full h-full flex items-center">
